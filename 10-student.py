@@ -23,9 +23,11 @@ class Student:
         Args:
             attrs (list): Optional list of attribute names to filter by.
         """
-        valid = isinstance(attrs, list)
-        if valid:
-            valid = all(isinstance(a, str) for a in attrs)
-        if valid:
-            return {k: v for k, v in self.__dict__.items() if k in attrs}
-        return self.__dict__
+        d = self.__dict__
+        if type(attrs) is list:
+            new_d = {}
+            for k in d:
+                if k in attrs:
+                    new_d[k] = d[k]
+            return new_d
+        return d
