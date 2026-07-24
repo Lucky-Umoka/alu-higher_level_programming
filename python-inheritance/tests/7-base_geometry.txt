@@ -1,0 +1,12 @@
+Test for 7-base_geometry module
+=================================
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("age", 5)
+>>> bg.integer_validator("age", -1)
+Traceback (most recent call last):
+ValueError: age must be greater than 0
+>>> bg.integer_validator("age", "x")
+Traceback (most recent call last):
+TypeError: age must be an integer
