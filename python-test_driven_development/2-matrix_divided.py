@@ -16,21 +16,25 @@ def matrix_divided(matrix, div):
     Returns:
         list: A new matrix with all elements divided by div.
     """
-    if (not isinstance(matrix, list) or len(matrix) == 0 or
-            not all(isinstance(row, list) for row in matrix)):
+    is_matrix = isinstance(matrix, list) and len(matrix) > 0
+    if is_matrix:
+        is_matrix = all(isinstance(row, list) for row in matrix)
+    if not is_matrix:
         raise TypeError(
             "matrix must be a matrix (list of lists) of integers/floats")
     for row in matrix:
         for elem in row:
-            if not isinstance(elem, (int, float)) or isinstance(elem, bool):
+            valid = isinstance(elem, (int, float))
+            valid = valid and not isinstance(elem, bool)
+            if not valid:
                 raise TypeError(
                     "matrix must be a matrix (list of lists) "
                     "of integers/floats")
     row_len = len(matrix[0])
     for row in matrix:
         if len(row) != row_len:
-            raise TypeError("Each row of the matrix must have the same "
-                             "size")
+            raise TypeError(
+                "Each row of the matrix must have the same size")
     if not isinstance(div, (int, float)) or isinstance(div, bool):
         raise TypeError("div must be a number")
     if div == 0:

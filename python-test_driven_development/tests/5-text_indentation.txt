@@ -12,6 +12,11 @@ Fine:
 <BLANKLINE>
 thanks.
 
+>>> text_indentation("Holberton.School")
+Holberton.
+<BLANKLINE>
+School
+
 >>> text_indentation(12)
 Traceback (most recent call last):
 TypeError: text must be a string
