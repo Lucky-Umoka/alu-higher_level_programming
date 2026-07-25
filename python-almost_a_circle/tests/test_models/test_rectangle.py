@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Unittest module for the Rectangle class."""
 import unittest
+import io
+import contextlib
 from models.rectangle import Rectangle
 
 
@@ -90,17 +92,26 @@ class TestRectangle(unittest.TestCase):
     def test_display_no_x_y(self):
         """Test display() without x and y."""
         r = Rectangle(2, 2)
-        r.display()
+        captured = io.StringIO()
+        with contextlib.redirect_stdout(captured):
+            r.display()
+        self.assertEqual(captured.getvalue(), "##\n##\n")
 
     def test_display_no_y(self):
         """Test display() without y."""
         r = Rectangle(2, 2, 1)
-        r.display()
+        captured = io.StringIO()
+        with contextlib.redirect_stdout(captured):
+            r.display()
+        self.assertEqual(captured.getvalue(), " ##\n ##\n")
 
     def test_display(self):
         """Test display() with x and y."""
         r = Rectangle(2, 2, 1, 1)
-        r.display()
+        captured = io.StringIO()
+        with contextlib.redirect_stdout(captured):
+            r.display()
+        self.assertEqual(captured.getvalue(), "\n ##\n ##\n")
 
     def test_to_dictionary(self):
         """Test to_dictionary() in Rectangle."""
