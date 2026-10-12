@@ -1,1 +1,3 @@
-Python higher level programming projects
+# alu-higher_level_programming
+
+JavaScript warm-up exercises.
